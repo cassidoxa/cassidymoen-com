@@ -50,14 +50,24 @@ const categorizedPosts = computed<Record<string, PostInfo[]>>(() => {
   return categories;
 });
 
-useSeoMeta({
-  title: `cassidy's blog`,
-  ogTitle: `cassidy's blog`,
-  ogType: "website",
-  description: `A collection of posts by cassidy moen`,
-  ogUrl: `${config.public.siteBase}/blog`,
-  ogImage: "https://assets.cassidymoen.com/images/cm_logo_400x400.png"
-});
+useHead({
+    title: `cassidy's blog`,
+    meta: [
+      { name: 'og:title', content: "cassidy's blog" },
+      { name: 'og:description', content: 'A collection of posts by cassidy moen' },
+      { name: 'og:image', content: 'https://assets.cassidymoen.com/images/cm_logo_400x400.png' },
+      { name: 'og:url', content: `${config.public.siteBase}/blog` },
+      { name: 'og:type', content: 'website' },
+      { name: 'og:site_name', content: "cassidy's blog" },
+      { name: 'og:locale', content: 'en_US' },
+      { name: 'description', content: 'A collection of posts by cassidy moen' },
+      { name: 'twitter:title', content: "cassidy's blog" },
+      { name: 'twitter:description', content: 'A collection of posts by cassidy moen' },
+      { name: 'twitter:image', content: 'https://assets.cassidymoen.com/images/cm_logo_400x400.png' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@cassidymoen' },
+    ],
+  });
 </script>
 
 <template>

@@ -19,38 +19,44 @@ const { data: post, error} = await useFetch(`/api/posts/${route.params.slug}`,
   } 
 )
 const postTitle = `${post.value?.title}`;
-useSeoMeta({
-  title: `${postTitle} | cassidy's blog`,
-  ogTitle: `${postTitle} | cassidy's blog`,
-  ogType: "article",
-  description: `Blog post: ${postTitle} by cassidy moen`,
-  ogUrl: `${config.public.siteBase}/blog/${post.value?.slug}`,
-  ogImage: "https://assets.cassidymoen.com/images/cm_logo_400x400.png"
-});
 
-if (!post.value) {
-  useSeoMeta({
-    title: "Post not found | cassidy's blog",
-    ogTitle: "Post not found | cassidy's blog",
-    description: "Post not found.",
-    ogDescription: "Post not found."
-  })
-/*   throw createError({
-    statusCode: 404,
-    statusMessage: 'Post not found',
-    fatal:true
-  }); */
+// Keep an eye on https://github.com/nuxt/nuxt/issues/29290
+// We can also rework some of the error/not found handling if "throw createError" will
+// work on server components or if we can find some way to redirect to error.vue.
+
+if (post.value) {
+  useHead({
+    title: `${postTitle} | cassidy's blog`,
+    meta: [
+      { name: 'og:title', content: `${postTitle} | cassidy's blog` },
+      { name: 'og:description', content: `Blog post: ${postTitle} by cassidy moen` },
+      { name: 'og:image', content: 'https://assets.cassidymoen.com/images/cm_logo_400x400.png' },
+      { name: 'og:url', content: `${config.public.siteBase}/blog/${post.value?.slug}` },
+      { name: 'og:type', content: 'article' },
+      { name: 'og:site_name', content: "cassidy's blog" },
+      { name: 'og:locale', content: 'en_US' },
+      { name: 'description', content: `Blog post: ${postTitle} by cassidy moen` },
+      { name: 'twitter:title', content: `${postTitle} | cassidy's blog` },
+      { name: 'twitter:description', content: `Blog post: ${postTitle} by cassidy moen` },
+      { name: 'twitter:image', content: 'https://assets.cassidymoen.com/images/cm_logo_400x400.png' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@cassidymoen' },
+    ],
+  });
+} else {
+  useHead({
+    title: `Post not found | cassidy's blog`,
+    meta: [
+      { name: 'description', content: `Post Not Found` },
+    ],
+  });
 }
+
 if (error.value) {
   useSeoMeta({
     title: "Error | cassidy's blog",
     ogTitle: "Error | cassidy's blog",
   })
-/*   throw createError({
-    statusCode: error.value.statusCode || 500,
-    statusMessage: error.value.statusMessage || "Server error",
-    fatal:true
-  }) */
 }
 </script>
 
