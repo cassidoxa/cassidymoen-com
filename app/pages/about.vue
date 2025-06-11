@@ -1,7 +1,11 @@
 <script setup lang="ts">
-  useSeoMeta({
-    title: "cassidy's blurb",
-    ogTitle: "cassidy's blurb",
+useSeoMeta({
+  title: `cassidy's blurb`,
+  ogTitle: `cassidy's blurb`,
+  ogType: "website",
+  description: `A little bit about cassidymoen`,
+  ogUrl: `https://cassidymoen.com/about`,
+  ogImage: "https://assets.cassidymoen.com/images/cm_logo_400x400.png"
 });
 </script>
 

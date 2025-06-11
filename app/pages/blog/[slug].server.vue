@@ -18,17 +18,22 @@ const { data: post, error} = await useFetch(`/api/posts/${route.params.slug}`,
       },
   } 
 )
-
-const postTitle = `${post.value?.title} | cassidy's blog`;
-  useSeoMeta({
-    title: postTitle,
-    ogTitle: postTitle,
+const postTitle = `${post.value?.title}`;
+useSeoMeta({
+  title: `${postTitle} | cassidy's blog`,
+  ogTitle: `${postTitle} | cassidy's blog`,
+  ogType: "article",
+  description: `Blog post: ${postTitle} by cassidy moen`,
+  ogUrl: `${config.public.siteBase}/blog/${post.value?.slug}`,
+  ogImage: "https://assets.cassidymoen.com/images/cm_logo_400x400.png"
 });
 
 if (!post.value) {
   useSeoMeta({
     title: "Post not found | cassidy's blog",
     ogTitle: "Post not found | cassidy's blog",
+    description: "Post not found.",
+    ogDescription: "Post not found."
   })
 /*   throw createError({
     statusCode: 404,

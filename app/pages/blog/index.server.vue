@@ -50,9 +50,13 @@ const categorizedPosts = computed<Record<string, PostInfo[]>>(() => {
   return categories;
 });
 
-  useSeoMeta({
-    title: "cassidy's blog",
-    ogTitle: "cassidy's blog",
+useSeoMeta({
+  title: `cassidy's blog`,
+  ogTitle: `cassidy's blog`,
+  ogType: "website",
+  description: `A collection of posts by cassidy moen`,
+  ogUrl: `${config.public.siteBase}/blog`,
+  ogImage: "https://assets.cassidymoen.com/images/cm_logo_400x400.png"
 });
 </script>
 
