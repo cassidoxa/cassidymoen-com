@@ -28,14 +28,15 @@ if (post.value) {
   useHead({
     title: `${postTitle} | cassidy's blog`,
     meta: [
-      { name: 'og:title', content: `${postTitle} | cassidy's blog` },
-      { name: 'og:description', content: `Blog post: ${postTitle} by cassidy moen` },
-      { name: 'og:image', content: 'https://assets.cassidymoen.com/images/cm_logo_400x400.png' },
-      { name: 'og:url', content: `${config.public.siteBase}/blog/${post.value?.slug}` },
-      { name: 'og:type', content: 'article' },
-      { name: 'og:site_name', content: "cassidy's blog" },
-      { name: 'og:locale', content: 'en_US' },
-      { name: 'description', content: `Blog post: ${postTitle} by cassidy moen` },
+      { property: 'og:title', content: `${postTitle} | cassidy's blog` },
+      { property: 'og:description', content: `Blog post: ${postTitle} by cassidy moen` },
+      { property: 'og:image', content: 'https://assets.cassidymoen.com/images/cm_logo_400x400.png' },
+      { property: 'og:url', content: `${config.public.siteBase}/blog/${post.value?.slug}` },
+      { property: 'og:type', content: 'article' },
+      { property: 'og:site_name', content: "cassidy's blog" },
+      { property: 'og:locale', content: 'en_US' },
+      { property: 'description', content: `Blog post: ${postTitle} by cassidy moen` },
+
       { name: 'twitter:title', content: `${postTitle} | cassidy's blog` },
       { name: 'twitter:description', content: `Blog post: ${postTitle} by cassidy moen` },
       { name: 'twitter:image', content: 'https://assets.cassidymoen.com/images/cm_logo_400x400.png' },
